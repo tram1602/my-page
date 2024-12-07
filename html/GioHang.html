@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/Logo/logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/TrangChu.css">
+    <link rel="stylesheet" href="../css/mdb.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Giỏ hàng</title>
+    <style>
+        body {
+            background: #113A31;
+            /* background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+            background: linear-gradient(to right, #eecda3, #ef629f); */
+            min-height: 100vh;
+        }
+
+        /* Đảm bảo tiêu đề sản phẩm nằm giữa */
+        .card-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            /* Màu chữ tối */
+        }
+
+        /* Định dạng thẻ khi được chọn */
+        .card.selected {
+            border: 2px solid #28a745;
+            /* Viền màu xanh lá */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Bóng đổ mạnh hơn */
+            transform: translateY(-10px);
+            /* Thẻ "nhấc lên" */
+            transition: all 0.3s ease;
+            /* Hiệu ứng mượt mà */
+        }
+
+        /* Định dạng cho nút "Mua Gói" */
+        .btn-success {
+            background-color: #888888;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hiệu ứng hover cho nút "Mua Gói" */
+        .btn-success:hover {
+            background-color: #28a745;
+            /* Màu xanh lá khi hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Đảm bảo hình ảnh có kích thước phù hợp */
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* Cắt ảnh cho vừa khung */
+        }
+
+        /* Định dạng cho các thẻ sản phẩm */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Bóng đổ nhẹ xung quanh thẻ */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hiệu ứng hover cho thẻ sản phẩm */
+        .card:hover {
+            transform: translateY(-10px);
+            /* Dịch thẻ lên khi hover */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            /* Bóng đổ đậm hơn */
+        }
+
+
+
+        /* Hiệu ứng hover cho thẻ sản phẩm */
+        .card:hover {
+            transform: translateY(-10px);
+            /* Dịch thẻ lên */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Bóng đổ mạnh hơn */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Cập nhật màu sắc và phông chữ cho tiêu đề */
+        .card-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        input[type="number"]:hover {
+            border: 0;
+
+        }
+    </style>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/mdb.min.js"></script>
+    <script src="../js/TrangChu.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="row" style="background-color: #000000;">
+            <div class="col-md-1">
+                <a href="../html/index.html"><img src="../img/Logo/lg111.jpg" class="navbar-brand img-fluid" alt=""
+                        style="max-width: 250px; height: 70px; padding-left: 80px; padding-top: 10px;"></a>
+            </div>
+
+
+
+
+            <nav class="navbar navbar-expand col-md-8">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item pf-5 pr-5 align-items-center font-weight-bold"><a href="../html/index.html"
+                            class="nav-link navbar-link">TRANG CHỦ</a></li>
+                    <li class="nav-item dropdown pf-5 pr-5 align-items-center font-weight-bold">
+                        <a href="" class="nav-link navbar-link dropdown-toggle" data-toggle="dropdown">SẢN PHẨM</a>
+                        <div class="dropdown-menu">
+                            <a href="../html/SanPham/Tho-TanVan.html" class="dropdown-item pt-1 pb-0">Thơ - Tản
+                                Văn</a>
+                            <a href="../html/SanPham/NgonTinh.html" class="dropdown-item pt-1 pb-0">Ngôn Tình
+                            </a>
+                            <a href="../html/SanPham/TieuThuyet.html" class="dropdown-item pt-1 pb-0">Tiểu Thuyết</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item pf-5 pr-5 align-items-center font-weight-bold"><a href="LienHe.html"
+                            class="nav-link navbar-link">LIÊN HỆ</a></li>
+                    <li class="nav-item pf-5 pr-5 align-items-center font-weight-bold" style="margin-right: 5px;"><a
+                            href="VeChungToi.html" class="nav-link navbar-link">VỀ CHÚNG TÔI</a></li>
+
+                </ul>
+            </nav>
+            <div class="col-md-3">
+                <div class="row h-100">
+                    <div class="col-md d-flex flex-column justify-content-around">
+                        <div>
+                            <div class="d-inline-flex">
+                                <div class="d-flex flex-column justify-content-around ">
+                                    <i class="fas fa-user-circle fa-2x navbar-link mr-2 "></i>
+                                </div>
+                                <div>
+                                    <a href="#" class="text-decoration-none navbar-link" id="btnDangNhap"
+                                        data-toggle="modal" data-target="#signinPage">
+                                        Đăng nhập <br>
+                                    </a>
+                                    <a href="../html/DangKy.html" class="text-decoration-none navbar-link">Đăng ký</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md d-flex flex-column justify-content-around">
+                        <div class="">
+                            <div class="d-inline-flex">
+                                <!-- Thay icon giỏ hàng bằng icon hội viên (user) -->
+                                <div class="d-flex flex-column justify-content-around">
+                                    <i class="fas fa-user fa-2x navbar-link mr-2"></i> <!-- Thay đổi icon -->
+                                </div>
+                                <div class="d-flex flex-column justify-content-around">
+                                    <a href="../html/GioHang.html" class="text-decoration-none navbar-link">Hội Viên</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="pb-5">
+            <div>
+                <div class="container">
+                    <div class="row w-100">
+                        <ol class="breadcrumb bg-white">
+                            <li class="breadcrumb-item"><a href="../html/index.html">Trang chủ</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Hội Viên</li>
+                        </ol>
+                    </div>
+                    <div class="container py-5">
+                        <div class="row">
+                            <!-- Thẻ 1 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card border-dark rounded shadow-sm">
+                                    <img src="../img/Logo/hv1.png" class="card-img-top" alt="Sản phẩm 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">1 Tháng</h5>
+                                        <p class="card-text">Giá: 99,000 VNĐ</p>
+                                        <button class="btn btn-success btn-block">Mua Gói</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Thẻ 2 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card border-dark rounded shadow-sm">
+                                    <img src="../img/Logo/hv2.png" class="card-img-top" alt="Sản phẩm 2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">3 Tháng</h5>
+                                        <p class="card-text">Giá: 279,000 VNĐ</p>
+                                        <button class="btn btn-success btn-block">Mua Gói</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Thẻ 3 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card border-dark rounded shadow-sm">
+                                    <img src="../img/Logo/hv3.png" class="card-img-top" alt="Sản phẩm 3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">6 Tháng</h5>
+                                        <p class="card-text">Giá: 529,000 VNĐ</p>
+                                        <button class="btn btn-success btn-block">Mua Gói</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Thẻ 4 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card border-dark rounded shadow-sm">
+                                    <img src="../img/Logo/hv4.png" class="card-img-top" alt="Sản phẩm 4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">12 tháng</h5>
+                                        <p class="card-text">Giá: 899,000 VNĐ</p>
+                                        <button class="btn btn-success btn-block">Mua Gói</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row bg-white rounded p-4 py-5 shadow-sm border border-dark">
+                        <div class="col-md-6">
+                            <div class="text-uppercase font-weight-bold bg-light rounded-pill px-md-4 py-md-3">Thông tin
+                                Khách Hàng</div>
+                            <form action="" class="p-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtHoTen" placeholder="Họ tên">
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" id="txtSDT" placeholder="Số điện thoại">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="diachi" id="txtEmail" cols="30" rows="2" class="form-control"
+                                        placeholder="Email"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="ghichu" id="txtGoiCuoc" cols="30" rows="3" class="form-control"
+                                        placeholder="Gói Cước"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check p-0">
+                                        <div class="form-check">
+                                            <label for="cod" class="form-check-label">
+                                                <input type="radio" name="thanhtoan" id="cod"
+                                                    class="form-check-input">QR Code
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label for="chuyenkhoan" class="form-check-label">
+                                                <input type="radio" name="thanhtoan" id="chuyenkhoan"
+                                                    class="form-check-input" checked>Chuyển khoản
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-uppercase font-weight-bold bg-light rounded-pill px-md-4 py-md-3">Chi tiết
+                                thanh toán</div>
+                            <div class="p-md-4">
+                                <form action="" class="py-md-4 row d-flex">
+                                    <div class="col-md-7 d-flex flex-column justify-content-center"><input type="text"
+                                            id="txtGiamGia" class="form-control" placeholder="Nhập mã giảm giá"></div>
+                                    <button type="button" class="btn btn-dark col-md-3 p-md-2 rounded-pill"><i
+                                            class="fa fa-gift"></i> Áp dụng</button>
+                                </form>
+                                <p class="font-italic mb-4">Vui lòng điền thông tin trước khi thanh toán</p>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex justify-content-between border-bottom py-3">
+                                        <strong class="text-muted">Tổng</strong>
+                                        <strong id="giatien">0đ</strong>
+                                    </li>
+
+                                    <li class="d-flex justify-content-between border-bottom py-3">
+                                        <strong class="text-muted">Giảm giá</strong>
+                                        <strong id="discount">0đ</strong>
+                                    </li>
+                                    <li class="d-flex justify-content-between border-bottom py-3">
+                                        <strong class="text-muted">Tổng cộng</strong>
+                                        <strong id="tongtien">0đ</strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-dark rounded-pill btn-block py-2"
+                                    id="btnDatHang">Mua Gói</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal đăng nhập -->
+        <!-- Phần modal: impor thư viện mba -->
+        <div class="modal fade" id="signinPage">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold">Đăng nhập</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    </div>
+
+                    <div class="modal-body mx-4">
+                        <div class="md-form">
+                            <input type="email" id="email" class="form-control validate">
+                            <label data-error="wrong" data-success="right">Email</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="password" id="password" class="form-control validate">
+                            <label data-error="wrong" data-success="right">Mật khẩu</label>
+                            <p class="font-small blue-text d-flex justify-content-end"><a href="#"
+                                    class="blue-text ml-1">Quên
+                                    mật khẩu?</a></p>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <button type="button" onclick="checkLogin()"
+                                class="btn btn-primary btn-block z-depth-1a">Đăng
+                                nhập</button>
+                        </div>
+                        <p class="font-small dark-grey-text d-flex justify-content-center">hoặc đăng nhập với:</p>
+
+                        <div class="row my-3 justify-content-center">
+                            <button type="button" class="btn btn-primary z-depth-1a"><i
+                                    class="fab fa-facebook-f text-center"></i></button>
+                            <button type="button" class="btn btn-purple z-depth-1a"><i
+                                    class="fab fa-twitter text-center"></i></button>
+                            <button type="button" class="btn btn-red z-depth-1a"><i
+                                    class="fab fa-google-plus-g text-center"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function checkLogin() {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+
+                // Lấy thông tin tài khoản đã lưu trong localStorage
+                var taiKhoanStored = localStorage.getItem("taiKhoan");
+
+                if (taiKhoanStored) {
+                    var taiKhoan = JSON.parse(taiKhoanStored);
+
+                    // Kiểm tra email và password từ localStorage
+                    if (email === taiKhoan.email && password === taiKhoan.matKhau) {
+                        alert("Đăng nhập thành công!");
+                        $('#signinPage').modal('hide');
+
+                        // Lưu trạng thái đăng nhập
+                        taiKhoan.isLoggedIn = true; // Thêm thuộc tính isLoggedIn vào tài khoản để lưu trạng thái đăng nhập
+                        localStorage.setItem("taiKhoan", JSON.stringify(taiKhoan)); // Cập nhật lại tài khoản
+
+                        // Chuyển đến trang chủ
+                        window.location.href = "../html/index.html"; // Thay bằng URL trang chủ của bạn
+                    } else {
+                        alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+                    }
+                } else {
+                    alert("Chưa có tài khoản đăng ký, vui lòng đăng ký trước");
+                }
+            }
+
+            // Lấy các phần tử cần thiết
+            const packageCards = document.querySelectorAll('.card');
+            const packageName = document.getElementById('txtGoiCuoc');
+            const packagePriceElement = document.getElementById('giatien');
+            const discountElement = document.getElementById('discount');
+            const totalAmountElement = document.getElementById('tongtien');
+            const applyDiscountButton = document.querySelector('button[type="button"]');
+            const discountInput = document.getElementById('txtGiamGia');
+            const placeOrderButton = document.getElementById('btnDatHang');
+
+            // Các giá trị mặc định
+            let selectedPackage = '';
+            let selectedPrice = 0;
+            let discount = 0;
+
+            // Lắng nghe sự kiện chọn gói hội viên
+            packageCards.forEach(card => {
+                card.querySelector('button').addEventListener('click', () => {
+                    const packageTitle = card.querySelector('.card-title').textContent.trim();
+                    const packagePrice = parseInt(card.querySelector('.card-text').textContent.replace(/\D/g, ''), 10);
+
+                    // Cập nhật thông tin gói đã chọn
+                    selectedPackage = packageTitle;
+                    selectedPrice = packagePrice;
+
+                    // Hiển thị gói đã chọn và giá
+                    packageName.value = selectedPackage;
+                    packagePriceElement.textContent = selectedPrice.toLocaleString('vi-VN') + 'đ';
+
+                    // Cập nhật tổng tiền
+                    updateTotal();
+                });
+            });
+
+            // Áp dụng mã giảm giá
+            applyDiscountButton.addEventListener('click', () => {
+                const discountCode = discountInput.value.trim().toLowerCase();
+
+                // Giả sử mã giảm giá là 'sale10' giảm 10% cho đơn hàng
+                if (discountCode === 'sale10') {
+                    discount = selectedPrice * 0.1; // Giảm 10% giá gói
+                } else {
+                    discount = 0;
+                }
+
+                // Cập nhật lại thông tin giảm giá và tính lại tổng tiền
+                discountElement.textContent = discount.toLocaleString('vi-VN') + 'đ';
+                updateTotal();
+            });
+
+            // Hàm cập nhật tổng tiền
+            function updateTotal() {
+                const total = selectedPrice - discount;
+                totalAmountElement.textContent = total.toLocaleString('vi-VN') + 'đ';
+            }
+
+            // Lắng nghe sự kiện đặt hàng
+            placeOrderButton.addEventListener('click', () => {
+                // Kiểm tra nếu người dùng chưa đăng nhập
+                var taiKhoanStored = localStorage.getItem("taiKhoan");
+                if (!taiKhoanStored || !JSON.parse(taiKhoanStored).isLoggedIn) {
+                    alert('Vui lòng về trang chủ đăng nhập để mua gói hội viên!');
+                    window.location.href = '../html/index.html'; // Chuyển đến trang đăng nhập nếu chưa đăng nhập
+                    return;
+                }
+
+                // Lấy thông tin khách hàng
+                const hoTen = document.getElementById('txtHoTen').value.trim();
+                const soDT = document.getElementById('txtSDT').value.trim();
+                const email = document.getElementById('txtEmail').value.trim();
+                const paymentMethod = document.querySelector('input[name="thanhtoan"]:checked').id; // Phương thức thanh toán
+
+                // Kiểm tra thông tin nhập liệu
+                if (!hoTen || !soDT || !email || !selectedPackage || selectedPrice <= 0) {
+                    alert('Vui lòng điền đầy đủ thông tin và chọn gói hội viên trước khi mua gói!');
+                    return;
+                }
+
+                // Lưu thông tin vào LocalStorage nếu đơn hàng hợp lệ
+                const customerInfo = {
+                    hoTen: hoTen,
+                    soDT: soDT,
+                    email: email,
+                    goiCuoc: selectedPackage,
+                    packagePrice: selectedPrice,
+                    discount: discount,
+                    totalAmount: parseInt(totalAmountElement.textContent.replace(/\D/g, ''), 10),
+                    paymentMethod: paymentMethod,
+                    isMember: true // Đánh dấu là hội viên
+                };
+
+                // Cập nhật thông tin hội viên vào tài khoản đã đăng ký
+                var taiKhoanStored = localStorage.getItem("taiKhoan");
+                if (taiKhoanStored) {
+                    var taiKhoan = JSON.parse(taiKhoanStored);
+
+                    // Cập nhật thông tin hội viên vào tài khoản đã đăng ký
+                    taiKhoan.isMember = true; // Đánh dấu tài khoản là hội viên
+                    taiKhoan.goiCuoc = selectedPackage; // Gói hội viên đã chọn
+                    taiKhoan.packagePrice = selectedPrice; // Giá gói hội viên
+                    taiKhoan.discount = discount; // Mức giảm giá
+                    taiKhoan.totalAmount = customerInfo.totalAmount; // Tổng tiền
+                    localStorage.setItem('taiKhoan', JSON.stringify(taiKhoan)); // Cập nhật lại thông tin tài khoản
+                }
+
+                // Lưu thông tin đơn hàng vào LocalStorage
+                localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
+
+                // Thông báo thanh toán thành công
+                alert(`Mua Gói Thành Công! Gói ${selectedPackage} với giá ${totalAmountElement.textContent} đã được xử lý.`);
+
+                // Sau khi thanh toán thành công, chuyển đến trang sách (hoặc trang khác)
+                window.location.href = '../html/index.html'; // Ví dụ: Chuyển đến trang sách
+            });
+
+
+
+        </script>
+</body>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>HƯỚNG DẪN KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="#">Trung tâm hỗ trợ</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Hướng  
+                            dẫn mua hàng</a></li>
+                    <li><a href="#">Hướng dẫn tạo tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>VỀ UNIVERSE OF BOOKS </h3>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Blogs Kiến thức</a></li>
+                    <li><a href="#">Cam kết và đảm bảo</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>HỖ TRỢ THANH TOÁN</h3>
+                <img src="../img/Logo/1.webp" alt="Visa">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col copyright">
+                <p>&copy; 2025 Công ty cổ phần TMDV Universe Of Books. All rights reserved.</p>
+                <p>Địa chỉ: 14 Nguyễn Văn Bảo, P. 4, Q. Gò Vấp, HCM.</p>
+                <p>Hotline: 0987654321</p>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>  
+
+</html>
